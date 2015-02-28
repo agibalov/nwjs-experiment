@@ -6,7 +6,13 @@
   </head>
   <body>
     <div class="grid-frame vertical">
-      <div class="grid-block shrink header">header</div>
+      <div class="grid-block shrink header" style="-webkit-app-region: drag">
+        Hello World (draggable)
+        <button onclick="minimizeWindow()" style="-webkit-app-region: no-drag">Minimize</button>
+        <button onclick="maximizeWindow()" style="-webkit-app-region: no-drag">Maximize</button>
+        <button onclick="unmaximizeWindow()" style="-webkit-app-region: no-drag">Unmaximize</button>
+        <button onclick="closeWindow()" style="-webkit-app-region: no-drag">Close</button>
+      </div>
       <div class="grid-block content">
         <div class="grid-content small-2 left">
           <h1>Left</h1>
@@ -19,5 +25,29 @@
       </div>
       <div class="grid-block shrink footer">footer</div>
     </div>
+
+    <script>
+      var gui = require('nw.gui');
+
+      function closeWindow() {
+        console.log("closing...");
+        gui.Window.get().close(true);
+      }
+
+      function minimizeWindow() {
+        console.log("minimizing...");
+        gui.Window.get().minimize();
+      }
+
+      function maximizeWindow() {
+        console.log("maximizing...");
+        gui.Window.get().maximize();
+      }
+
+      function unmaximizeWindow() {
+        console.log("unmaximizing...");
+        gui.Window.get().unmaximize();
+      }
+    </script>
   </body>
 </html>
